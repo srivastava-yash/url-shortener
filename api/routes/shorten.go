@@ -1,21 +1,22 @@
 package routes
 
 import (
-	"time"
 	"os"
 	"strconv"
-	"github.com/srivastava-yash/url-shortener/database"
-	"github.com/srivastava-yash/url-shortener/helpers"
+	"time"
+
 	"github.com/asaskevich/govalidator"
 	"github.com/go-redis/redis/v8"
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
+	"github.com/srivastava-yash/url-shortener/database"
+	"github.com/srivastava-yash/url-shortener/helpers"
 )
 
 type request struct {
-	URL				string		`json:"url"`
-	CustomShort		string		`json:"short"`
-	Expiry			time.Duration `json:"expiry"`
+	URL         string        `json:"url"`
+	CustomShort string        `json:"short"`
+	Expiry      time.Duration `json:"expiry"`
 }
 
 type response struct {
@@ -25,7 +26,6 @@ type response struct {
 	XRateRemaining  int           `json:"rate_limit"`
 	XRateLimitReset time.Duration `json:"rate_limit_reset"`
 }
-
 
 func ShortenURL(c *fiber.Ctx) error {
 
